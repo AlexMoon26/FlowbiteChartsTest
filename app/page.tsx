@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { NumberOfUsers } from "@/app/data/users";
 import { getNumberOfUsers } from "@/app/actions/GetUsers";
-import dynamic from "next/dynamic";
-import { CardAreaChart } from "./components/Cards/card-area-chart";
+import { CardAreaChart } from "@/app/components/Cards/card-area-chart";
 
 const Home = async () => {
   const users = await getNumberOfUsers();
