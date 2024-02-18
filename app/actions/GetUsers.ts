@@ -1,4 +1,4 @@
-import { NumberOfUsers } from "../data/users";
+import { NumberOfUsers, TopUsers } from "../data/users";
 
 export async function getNumberOfUsers() {
     "use server";
@@ -11,4 +11,13 @@ export async function getNumberOfUsers() {
 
     return NumberOfUsers;
 
+}
+
+export async function getTopUsers() {
+    "use server";
+    const response = await fetch("https://reqres.in/api/users?page=1");
+    const {data} = await response.json();
+    TopUsers.length = 0;
+    TopUsers.push(...data);
+    return TopUsers;
 }
