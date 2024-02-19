@@ -23,8 +23,8 @@ export const LoaderChart = () => {
 export const LoaderListUser = () => {
   return (
     <div role="status" className="animate-pulse">
-      {[1, 2, 3, 4].map(() => (
-        <div className="flex gap-5 items-center justify-center mt-4">
+      {[1, 2, 3, 4].map((item, i) => (
+        <div key={i} className="flex gap-5 items-center justify-center mt-4">
           <svg
             className="w-10 h-10 rounded text-gray-200 dark:text-gray-700 me-4"
             aria-hidden="true"

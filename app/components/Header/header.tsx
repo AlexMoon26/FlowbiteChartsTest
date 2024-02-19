@@ -1,4 +1,5 @@
-"use client"
+"use client";
+import Image from "next/image";
 import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 
@@ -12,7 +13,7 @@ export const Header = () => {
             href="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
-            <img
+            <Image
               src="https://image.shutterstock.com/image-vector/combo-chart-260nw-717462169.jpg"
               className="h-8"
               alt="Flowbite Logo"
@@ -22,7 +23,7 @@ export const Header = () => {
             </span>
           </a>
           <button
-          onClick={() => setOpenMenu(!openMenu)}
+            onClick={() => setOpenMenu(!openMenu)}
             data-collapse-toggle="navbar-default"
             type="button"
             className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -32,7 +33,10 @@ export const Header = () => {
             <span className="sr-only">Open main menu</span>
             <RxHamburgerMenu />
           </button>
-          <div className={`${openMenu ? "" : "hidden"} w-full md:block md:w-auto`} id="navbar-default">
+          <div
+            className={`${openMenu ? "" : "hidden"} w-full md:block md:w-auto`}
+            id="navbar-default"
+          >
             <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
                 <a
