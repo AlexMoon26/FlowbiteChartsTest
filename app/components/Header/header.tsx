@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 
@@ -9,7 +10,7 @@ export const Header = () => {
     <header>
       <nav className="bg-white border-gray-200 dark:bg-gray-900 border-b">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a
+          <Link
             href="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
@@ -17,7 +18,7 @@ export const Header = () => {
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               Real <span className="text-blue-500">Charts</span>
             </span>
-          </a>
+          </Link>
           <button
             onClick={() => setOpenMenu(!openMenu)}
             data-collapse-toggle="navbar-default"
