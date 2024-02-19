@@ -13,11 +13,7 @@ export const Header = () => {
             href="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
-            <Image
-              src="https://image.shutterstock.com/image-vector/combo-chart-260nw-717462169.jpg"
-              className="h-8"
-              alt="Flowbite Logo"
-            />
+            <Image src="/icon.svg" width={25} height={25} alt="Flowbite Logo" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               Real <span className="text-blue-500">Charts</span>
             </span>
