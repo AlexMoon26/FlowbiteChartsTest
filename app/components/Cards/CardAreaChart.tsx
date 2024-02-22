@@ -24,7 +24,7 @@ export const CardAreaChart = ({ users }) => {
   const percent = (difference / firstValue) * 100;
 
   return (
-    <div className="flex flex-col max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+    <div className="flex flex-col w-[75vw] bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
       <div className="flex justify-between ">
         <div className="w-full md:w-auto md:flex-shrink-0 md:mr-4">
           <h5 className="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">
@@ -37,7 +37,7 @@ export const CardAreaChart = ({ users }) => {
         {percent !== null ? (
           <div className="flex items-center mt-4 md:mt-0">
             <div
-              className={`px-2.5 py-0.5 text-base font-semibold text-${
+              className={`px-2.5 py-0.5  text-base font-semibold text-${
                 percent > 0 ? "green" : "red"
               }-500 dark:text-${percent > 0 ? "green" : "red"}-500 text-center`}
             >

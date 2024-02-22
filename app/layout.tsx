@@ -23,8 +23,10 @@ export default function RootLayout({
         <ThemeModeScript />
       </head>
       <body className={inter.className}>
-      <Header />
-        <Suspense fallback={<Spinner/>}>{children}</Suspense>
+        <Header />
+        <div className="pt-24">
+          <Suspense fallback={<Spinner />}>{children}</Suspense>
+        </div>
       </body>
     </html>
   );

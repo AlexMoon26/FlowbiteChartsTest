@@ -1,2 +1,2 @@
-export * from "./card-area-chart";
-export * from "./card-list-users"
+export * from "./CardAreaChart";
+export * from "./TableListProduct"
