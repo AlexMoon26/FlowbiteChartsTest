@@ -1,9 +1,10 @@
 "use client";
+import { IProduct } from "@/types";
 import { Button, Table } from "flowbite-react";
 
-const TableListProducts = ({ products }) => {
+export function TableListProducts({ products }: { products: IProduct[] }) {
   return (
-    <div className="overflow-x-scroll w-full max-md:w-[75vw]  bg-white shadow rounded-lg ">
+    <div className="overflow-x-scroll w-full max-md:w-[75vw] bg-white shadow rounded-lg ">
       <Table striped hoverable>
         <Table.Head>
           <Table.HeadCell>Продукт</Table.HeadCell>
@@ -29,13 +30,12 @@ const TableListProducts = ({ products }) => {
                 <Table.Cell>{product.category}</Table.Cell>
                 <Table.Cell>
                   <Button
+                    color="gray"
                     onClick={() =>
                       alert(
                         `Вы изменяете товар: ${product.title} с id: ${product.id}`
                       )
                     }
-                    outline
-                    className="font-medium "
                   >
                     Edit
                   </Button>
@@ -47,6 +47,4 @@ const TableListProducts = ({ products }) => {
       </Table>
     </div>
   );
-};
-
-export default TableListProducts;
+}

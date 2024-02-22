@@ -2,17 +2,18 @@ import React from "react";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import numeral from "numeral";
 import dynamic from "next/dynamic";
-import { LoaderChart } from "@/app/components/Loaders";
+import { LoaderChart } from "@/components";
+import { IUsers } from "@/types";
 
 const DynamicChartComponent = dynamic(
-  () => import("@/app/components/Charts/area-chart"),
+  () => import("@/components/Charts/areaChart"),
   {
     ssr: false,
     loading: () => <LoaderChart />,
   }
 );
 
-export const CardAreaChart = ({ users }) => {
+export function СardAreaChart({ users }: IUsers) {
   let summ = 0;
   users.map((user) => (summ += user));
   const numeralSumm = numeral(summ).format("0a");
@@ -56,4 +57,4 @@ export const CardAreaChart = ({ users }) => {
       <DynamicChartComponent users={users} />
     </div>
   );
-};
+}

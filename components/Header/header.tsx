@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 
-export const Header = () => {
+export function Header() {
   const [openMenu, setOpenMenu] = useState(false);
   return (
     <header className="fixed z-10 w-full">
@@ -74,4 +74,4 @@ export const Header = () => {
       </nav>
     </header>
   );
-};
+}
