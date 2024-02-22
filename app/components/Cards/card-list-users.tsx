@@ -1,6 +1,8 @@
+"use client";
 import { CardUser } from "@/app/components/CardUser";
 import { LoaderListUser } from "../Loaders";
 import dynamic from "next/dynamic";
+import { Table } from "flowbite-react";
 
 const DynamicChartComponent = dynamic(
   () => import("@/app/components/CardUserItem"),
@@ -10,17 +12,45 @@ const DynamicChartComponent = dynamic(
   }
 );
 
-const CardListUsers = ({ topUsers }) => {
+const CardListUsers = ({ products }) => {
   return (
-    <div className="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
-      <div className="flex justify-between flex-wrap">
-        <div className="w-full md:w-auto md:flex-shrink-0 md:mr-4">
-          <h5 className="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">
-            Топ пользователей
-          </h5>
-        </div>
-      </div>
-      <DynamicChartComponent topUsers={topUsers} />
+    <div className="overflow-x-auto">
+      <Table>
+        <Table.Head>
+          <Table.HeadCell>Продукт</Table.HeadCell>
+          <Table.HeadCell>Описание</Table.HeadCell>
+          <Table.HeadCell>Цена</Table.HeadCell>
+          <Table.HeadCell>Рейтинг</Table.HeadCell>
+          <Table.HeadCell>Брендд</Table.HeadCell>
+          <Table.HeadCell>Категория</Table.HeadCell>
+          <Table.HeadCell>
+            <span className="sr-only">Edit</span>
+          </Table.HeadCell>
+        </Table.Head>
+        <Table.Body className="divide-y">
+          {products.map((product, i) => {
+            {
+              product.title;
+            }
+            <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+              <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                {'Apple MacBook Pro 17"'}
+              </Table.Cell>
+              <Table.Cell>Sliver</Table.Cell>
+              <Table.Cell>Laptop</Table.Cell>
+              <Table.Cell>$2999</Table.Cell>
+              <Table.Cell>
+                <a
+                  href="#"
+                  className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
+                >
+                  Edit
+                </a>
+              </Table.Cell>
+            </Table.Row>;
+          })}
+        </Table.Body>
+      </Table>
     </div>
   );
 };

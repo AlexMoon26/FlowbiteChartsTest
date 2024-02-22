@@ -1,23 +1,21 @@
-import { NumberOfUsers, TopUsers } from "../data/users";
+"use server";
 
 export async function getNumberOfUsers() {
-    "use server";
-    if (NumberOfUsers.length > 1) NumberOfUsers.pop()
-    const response = await fetch("http://numbersapi.com/random?json", { next: { revalidate: 10 } });
-    const { number } = await response.json()
-    NumberOfUsers.push(number)
+    const responseFirst = await fetch("http://numbersapi.com/23?json", { next: { revalidate: 10 } });
+    const responseSecond = await fetch("http://numbersapi.com/random?json", { next: { revalidate: 10 } });
 
 
 
-    return NumberOfUsers;
-
+    return Promise.all([responseFirst, responseSecond])
+        .then(responses => Promise.all(responses.map(response => response.json())))
+        .then(dataArray => dataArray.map(data => data.number));
 }
 
+
 export async function getTopUsers() {
-    "use server";
-    const response = await fetch("https://reqres.in/api/users?page=1");
-    const { data } = await response.json();
-    TopUsers.length = 0;
-    TopUsers.push(...data);
-    return TopUsers;
+    const response = await fetch("https://dummyjson.com/products");
+    const { products } = await response.json();
+    console.log(products);
+
+    return products;
 }
