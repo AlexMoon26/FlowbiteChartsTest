@@ -1,8 +1,37 @@
 "use client";
 import { IProduct } from "@/types";
 import { Button, Table } from "flowbite-react";
+import { useEffect, useState } from "react";
+import EditProductModal from "../Modal/editProductModal";
 
 export function TableListProducts({ products }: { products: IProduct[] }) {
+  const [productList, setProductList] = useState<IProduct[]>(products);
+
+  const [openEditProductModal, setOpenEditProductModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(null);
+
+  const handleEditButtonClick = (product: IProduct) => {
+    setSelectedProduct(product);
+    setOpenEditProductModal(true);
+  };
+
+  const updateProductList = (updatedProduct: IProduct) => {
+    const updatedList = productList.map((product) => {
+      // console.log(updatedProduct);
+
+      if (product.id === updatedProduct.id) {
+        return updatedProduct;
+      } else {
+        return product;
+      }
+    });
+    setProductList(updatedList);
+  };
+
+  useEffect(() => {
+    setProductList(products);
+  }, []);
+
   return (
     <div className="overflow-x-scroll w-full max-md:w-[75vw] bg-white shadow rounded-lg ">
       <Table striped hoverable>
@@ -16,7 +45,7 @@ export function TableListProducts({ products }: { products: IProduct[] }) {
           </Table.HeadCell>
         </Table.Head>
         <Table.Body className="divide-y">
-          {products.map((product, i) => {
+          {productList.map((product, i) => {
             return (
               <Table.Row
                 key={i}
@@ -31,11 +60,7 @@ export function TableListProducts({ products }: { products: IProduct[] }) {
                 <Table.Cell>
                   <Button
                     color="gray"
-                    onClick={() =>
-                      alert(
-                        `Вы изменяете товар: ${product.title} с id: ${product.id}`
-                      )
-                    }
+                    onClick={() => handleEditButtonClick(product)}
                   >
                     Edit
                   </Button>
@@ -45,6 +70,15 @@ export function TableListProducts({ products }: { products: IProduct[] }) {
           })}
         </Table.Body>
       </Table>
+
+      {openEditProductModal && (
+        <EditProductModal
+          openEditProductModal={openEditProductModal}
+          setEditProductModal={setOpenEditProductModal}
+          selectedProduct={selectedProduct}
+          updateProductList={updateProductList}
+        />
+      )}
     </div>
   );
 }

@@ -1,28 +1,24 @@
 "use client";
+import { AddNewProduct } from "@/api/actions";
+import { IProduct } from "@/types";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import React, { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-
-type Inputs = {
-  name: string;
-  price: number;
-};
+import { useForm } from "react-hook-form";
 
 export default function CreateProduct() {
   const [openCreateProductModal, setOpenCreateProductModal] = useState(false);
-  const [selectedItem, setSelectedItem] = useState("");
 
-  const handleChange = (event) => {
-    setSelectedItem(event.target.value);
+  const { register, handleSubmit } = useForm<IProduct>();
+  const onSubmit = async (data) => {
+    try {
+      const result = await AddNewProduct(data);
+      setOpenCreateProductModal(false);
+      if (result)
+        return alert(`Продукт успешно создан! \nId продукта : ${result.id}`);
+    } catch (err) {
+      console.error(err);
+    }
   };
-
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
   return (
     <div className="w-full max-md:w-[75vw]">
       <Button
@@ -44,8 +40,8 @@ export default function CreateProduct() {
                   <Label htmlFor="name" value="Название" />
                 </div>
                 <TextInput
-                  {...register("name")}
-                  id="name"
+                  {...register("title")}
+                  id="title"
                   placeholder="Iphone 13"
                   required
                   shadow
@@ -66,12 +62,7 @@ export default function CreateProduct() {
                 <div className="mb-2 block">
                   <Label htmlFor="category" value="Категория" />
                 </div>
-                <Select
-                  id="category"
-                  required
-                  value={selectedItem}
-                  onChange={handleChange}
-                >
+                <Select {...register("category")} id="category" required>
                   <option value="">Выберите категорию</option>
                   <option value="smartphones">smartphones</option>
                   <option value="laptops">laptops</option>
